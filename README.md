@@ -8,7 +8,7 @@ This project contains **three different prompt versions**, each saved in a separ
 
 Users of this project can modify or extend these prompts in the following code block:
 
-python
+```python
 base_prompt = """Prompt (Test-1):
 ...
 """
