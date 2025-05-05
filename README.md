@@ -19,6 +19,7 @@ base_prompt = """Prompt (Test-1):
 - Input: A CSV file with political statement titles and questions.
 - Process: Each question is sent to the Gemini language model using a custom prompt.
 - Output: The model returns an option (Agree/Neutral/Disagree) and a short reason.
+- Repeats this process 10 times using a random shuffle each time.
 - Result: Responses are saved in a new CSV file for further analysis.
 
 ##  Technologies Used
@@ -79,3 +80,16 @@ base_prompt = """Prompt (Test-1):
 You can change the CSV file (StemWijzer.csv) to any other file with the same format.
 The model is rate-limited with time.sleep(3) to avoid hitting the API too fast.
 Only the Gemini-compatible API is used here.
+
+## Comparison Script (combined_runs.csv)
+After collecting the responses from 10 randomized runs, a second script automatically combines and compares all outputs.
+This script:
+- Loads all 10 output CSV files from the outputs/ folder.
+- Extracts only the "Option" answers from each run.
+- Combines them into a single CSV file: combined_runs.csv
+- Adds a "Status" column showing whether all 10 runs gave the same answer ("not changed") or different ones ("changed").
+- Calculates how often "Agree" or "Disagree" appears across all runs and adds:
+    - "Percent_Agree"
+    - "Percent_Disagree"
+This helps analyze the consistency of the LLM's political answers.
+You can find the comparison result here: outputs/combined_runs.csv
